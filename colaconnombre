@@ -1,0 +1,144 @@
+
+package Vangoh;
+
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+public class Bethoven {
+
+public char MAximo;
+    public String[] COLITA;
+    
+    public int FRONT;
+    public int END;
+Scanner lector=new Scanner(System.in);
+    public Bethoven()
+    {
+        this.MAximo = 100;
+        this.FRONT = 0;
+        this.END = 0;
+        this.COLITA = new String[this.MAximo+1];
+    }
+
+    public Bethoven(char MAX)
+    {
+        this.MAximo = MAX;
+        this.FRONT = 0;
+        this.END = 0;  
+        this.COLITA = new String[this.MAximo+1];
+    }  
+    
+    public boolean Colallena()
+    {
+        if(this.END == this.MAximo)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public boolean ColaVacia()
+    {
+        if(this.FRONT == this.END)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void Insertar() {
+        
+        if(this.Colallena())
+        {
+            System.out.println("la cola esta llena");
+        }
+        else
+        {
+                     
+           System.out.println("ingrese el nombre");
+            int i = 0;
+            String ITEM;
+            ITEM= lector.nextLine();
+            
+            this.END++;
+               this.COLITA[END]=ITEM;                  
+        }
+    }
+
+    public void Eliminar()
+    {
+        System.out.println("\n\n  ELIMINAR DATO ");
+           if(FRONT==-1) {
+               System.out.println("Cola vacia !!!");
+               return;
+           }
+           System.out.println("Dato eliminado = "+COLITA[FRONT]);
+           if(FRONT==END) {
+               FRONT=-1; END=-1;
+               return;
+           }
+           if(FRONT==MAximo) FRONT=0; else FRONT++;
+       }
+   
+public void Mostrar()
+{int i=0;
+            System.out.println("\n\n MOSTRAR COLA  ");
+            if(FRONT==-1) {
+                System.out.println("\n Cola vacia !!!");
+            }
+            else {
+                i=FRONT;
+                do {
+                    System.out.println("cola["+i+"]="+COLITA[i]);
+                    i++;
+                    if(i==MAximo && FRONT>END) ; 
+               }while(i!=END+1);
+           }
+
+           System.out.println("frente="+FRONT);
+           System.out.println("fin="+END);
+           System.out.println("max="+MAximo);
+       }
+
+          
+  public  static  Bethoven Cola;
+    public static void main(String[] args) {
+        System.out.println("Hoa, de nuevo extraño");
+        char MAX;
+
+        MAX = (char) Integer.parseInt(JOptionPane.showInputDialog(null,"INGRESE EL TAMAÑO DE LA COLA"));   
+     Cola = new Bethoven(MAX);
+        
+        MenuCola();
+    }
+    
+    public static void MenuCola()
+    {   
+        int opcion;
+       do {
+            
+            System.out.println("1.- Inserte");
+            System.out.println("2.- Elimine");
+            System.out.println("3.- Muestre");
+            System.out.println("4.- EXIT");
+
+            System.out.print("Digite su numero ****");
+            Scanner lector=new Scanner(System.in);
+            opcion = lector.nextInt();
+            switch(opcion)
+            {
+                case 1: Cola.Insertar();break;
+                case 2: Cola.Eliminar();break;
+                case 3: Cola.Mostrar();break;
+                case 4: System.exit(0);break;
+                default: System.out.println("digite una opcion valida");
+            }
+        }
+        while(opcion !=4); 
+    }
+    
+}
